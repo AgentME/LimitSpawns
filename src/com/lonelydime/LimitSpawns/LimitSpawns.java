@@ -32,35 +32,35 @@ public class LimitSpawns extends JavaPlugin{
 	public void onEnable() {
 		File yml = new File(getDataFolder()+"/config.yml");
         
-        if (!yml.exists()) {
-        	new File(getDataFolder().toString()).mkdir();
-    	    try {
-    	    	yml.createNewFile();
-    	    }
-    	    catch (IOException ex) {
-    	    	System.out.println("cannot create file "+yml.getPath());
-    	    }
-        }	
+		if (!yml.exists()) {
+			new File(getDataFolder().toString()).mkdir();
+			try {
+				yml.createNewFile();
+			}
+			catch (IOException ex) {
+				System.out.println("cannot create file "+yml.getPath());
+			}
+		}	
 
-        config = getConfiguration();
-        worlds = config.getKeys(null);
+		config = getConfiguration();
+		worlds = config.getKeys(null);
 
-        for (String world: worlds) {
-            System.out.println("[LimitSpawns] parsing world: " + world);
+		for (String world: worlds) {
+			System.out.println("[LimitSpawns] parsing world: " + world);
 
-            worldConfigs.put(world, config.getIntList(world, null));
-            System.out.print("[LimitSpawns] found: " + worldConfigs.get(world));
+			worldConfigs.put(world, config.getIntList(world, null));
+			System.out.print("[LimitSpawns] found: " + worldConfigs.get(world));
 
-        }
+		}
 
 		
-        //Create the pluginmanage pm.
-        PluginManager pm = getServer().getPluginManager();
-        pm.registerEvent(Event.Type.CREATURE_SPAWN, spawnListener, Priority.Normal, this);
+		//Create the pluginmanage pm.
+		PluginManager pm = getServer().getPluginManager();
+		pm.registerEvent(Event.Type.CREATURE_SPAWN, spawnListener, Priority.Normal, this);
         
-        //Get the infomation from the plugin.yml file.
-        PluginDescriptionFile pdfFile = this.getDescription();
-        //Print that the plugin has been enabled!
-        log.info("[LimitSpawns] version " + pdfFile.getVersion() + " by lonelydime is enabled!");
+		//Get the infomation from the plugin.yml file.
+		PluginDescriptionFile pdfFile = this.getDescription();
+		//Print that the plugin has been enabled!
+		log.info("[LimitSpawns] version " + pdfFile.getVersion() + " by lonelydime is enabled!");
 	}
 }
