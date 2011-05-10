@@ -50,7 +50,6 @@ public class LimitSpawns extends JavaPlugin{
 
 			worldConfigs.put(world, config.getIntList(world, null));
 			System.out.print("[LimitSpawns] found: " + worldConfigs.get(world));
-
 		}
 
 		
