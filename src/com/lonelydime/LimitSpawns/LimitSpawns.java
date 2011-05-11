@@ -62,4 +62,14 @@ public class LimitSpawns extends JavaPlugin{
 		//Print that the plugin has been enabled!
 		log.info("[LimitSpawns] version " + pdfFile.getVersion() + " by lonelydime is enabled!");
 	}
+
+	public static boolean canSpawn(String world, int blockid) {
+		if (worldConfigs.get(world) != null &&
+		    worldConfigs.get(world).indexOf(blockid) != -1)
+			return false;
+		if (worldConfigs.get("all") != null &&
+		    worldConfigs.get("all").indexOf(blockid) != -1)
+			return false;
+		return true;
+	}
 }

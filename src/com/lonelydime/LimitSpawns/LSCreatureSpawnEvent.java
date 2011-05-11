@@ -21,8 +21,7 @@ public class LSCreatureSpawnEvent extends EntityListener{
 		
 		String curWorld = event.getEntity().getLocation().getWorld().getName();
 		
-		if ( (LimitSpawns.worldConfigs.get(curWorld).indexOf(spawnbid) != -1) ||
-		     (LimitSpawns.worldConfigs.get("all").indexOf(spawnbid) != -1) )
+		if (!LimitSpawns.canSpawn(curWorld, spawnbid))
 			event.setCancelled(true);
 	}
 
